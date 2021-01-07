@@ -1,0 +1,15 @@
+{
+  "name": "qing-web-api-sdk",
+  "version": "0.0.1",
+  "author": "moJiXiang",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "qs": "^6.9.4"
+  }
+}
