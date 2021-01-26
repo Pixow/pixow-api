@@ -1,8 +1,5 @@
 import { AxiosInstance } from "axios";
-export interface Pagination {
-    page: number;
-    pageSize: number;
-}
+import { Pagination } from "./type";
 export declare class GameApi {
     private _axios;
     constructor(_axios: AxiosInstance);

@@ -1,10 +1,6 @@
 import { AxiosInstance } from "axios";
 import { stringify } from "qs";
-
-export interface Pagination {
-  page: number;
-  pageSize: number;
-}
+import { Pagination } from "./type";
 
 export class GameApi {
   constructor(private _axios: AxiosInstance) {}

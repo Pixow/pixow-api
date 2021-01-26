@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QingWebApiSdk = exports.Environment = void 0;
 var axios_1 = require("axios");
 var auth_1 = require("./auth");
+var component_1 = require("./component");
 var game_1 = require("./game");
 var Environment;
 (function (Environment) {
@@ -27,6 +28,7 @@ var QingWebApiSdk = /** @class */ (function () {
         });
         this._auth = new auth_1.AuthApi(this._axios);
         this._game = new game_1.GameApi(this._axios);
+        this._component = new component_1.ComponentApi(this._axios);
     }
     Object.defineProperty(QingWebApiSdk.prototype, "auth", {
         get: function () {
@@ -38,6 +40,13 @@ var QingWebApiSdk = /** @class */ (function () {
     Object.defineProperty(QingWebApiSdk.prototype, "game", {
         get: function () {
             return this._game;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(QingWebApiSdk.prototype, "component", {
+        get: function () {
+            return this._component;
         },
         enumerable: false,
         configurable: true

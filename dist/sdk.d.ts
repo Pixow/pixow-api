@@ -1,5 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { AuthApi } from "./auth";
+import { ComponentApi } from "./component";
 import { GameApi } from "./game";
 export declare enum Environment {
     Development = 0,
@@ -9,6 +10,7 @@ export declare enum Environment {
 export interface IQingWebApiSdk {
     auth: AuthApi;
     game: GameApi;
+    component: ComponentApi;
     setToken(token: string): void;
     setRequestInterceptor(onFulfilled?: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>, onRejected?: (error: any) => any): void;
     setResponseInterceptor(onFulfilled?: (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<AxiosResponse<any>>, onRejected?: (error: any) => any): void;
@@ -23,6 +25,8 @@ export declare class QingWebApiSdk implements IQingWebApiSdk {
     get auth(): AuthApi;
     private _game;
     get game(): GameApi;
+    private _component;
+    get component(): ComponentApi;
     setToken(token: string): void;
     setRequestInterceptor(onFulfilled?: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>, onRejected?: (error: any) => any): void;
     setResponseInterceptor(onFulfilled?: (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<AxiosResponse<any>>, onRejected?: (error: any) => any): void;

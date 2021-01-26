@@ -6,10 +6,13 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "rimraf dist && tsc -p tsconfig.json"
   },
   "dependencies": {
     "axios": "^0.21.0",
     "qs": "^6.9.4"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
   }
 }

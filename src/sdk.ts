@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { AuthApi } from "./auth";
+import { ComponentApi } from "./component";
 import { GameApi } from "./game";
 
 export enum Environment {
@@ -11,6 +12,7 @@ export enum Environment {
 export interface IQingWebApiSdk {
   auth: AuthApi;
   game: GameApi;
+  component: ComponentApi;
 
   setToken(token: string): void;
   setRequestInterceptor(
@@ -47,6 +49,7 @@ export class QingWebApiSdk implements IQingWebApiSdk {
 
     this._auth = new AuthApi(this._axios);
     this._game = new GameApi(this._axios);
+    this._component = new ComponentApi(this._axios);
   }
 
   private _auth: AuthApi;
@@ -57,6 +60,11 @@ export class QingWebApiSdk implements IQingWebApiSdk {
   private _game: GameApi;
   public get game() {
     return this._game;
+  }
+
+  private _component: ComponentApi;
+  public get component() {
+    return this._component;
   }
 
   public setToken(token: string): void {
