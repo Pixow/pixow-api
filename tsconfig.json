@@ -2,13 +2,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist",
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "ES5",
-    "module": "CommonJS",
+    "target": "ESNext",
+    "module": "ESNext",
     "typeRoots": [
       "node_modules/@types",
     ],

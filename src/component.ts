@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { stringify } from "qs";
+import * as qs from "qs";
 import { Pagination } from "./type";
 
 export enum ComponentVisibility {
@@ -31,6 +31,6 @@ export class ComponentApi {
   ) {
     const q = Object.assign(pagination, query);
 
-    return this._axios.get(`/component/list?${stringify(q)}`);
+    return this._axios.get(`/component/list?${qs.stringify(q)}`);
   }
 }

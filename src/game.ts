@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { stringify } from "qs";
+import * as qs from "qs";
 import { Pagination } from "./type";
 
 export class GameApi {
@@ -10,7 +10,7 @@ export class GameApi {
   }
 
   public listMyGames(pagination: Pagination = { page: 1, pageSize: 20 }) {
-    const q = stringify(pagination);
+    const q = qs.stringify(pagination);
     return this._axios.get(`/game/mine?${q}`);
   }
 }
