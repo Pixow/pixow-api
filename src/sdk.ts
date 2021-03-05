@@ -2,6 +2,8 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { AuthApi } from "./auth";
 import { ComponentApi } from "./component";
 import { GameApi } from "./game";
+import { PluginApi } from "./plugin";
+import { UtilApi } from "./util";
 
 export enum Environment {
   Development,
@@ -13,14 +15,20 @@ export interface IQingWebApiSdk {
   auth: AuthApi;
   game: GameApi;
   component: ComponentApi;
+  plugin: PluginApi;
+  util: UtilApi;
 
   setToken(token: string): void;
   setRequestInterceptor(
-    onFulfilled?: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>,
+    onFulfilled?: (
+      value: AxiosRequestConfig
+    ) => AxiosRequestConfig | Promise<AxiosRequestConfig>,
     onRejected?: (error: any) => any
   ): void;
   setResponseInterceptor(
-    onFulfilled?: (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<AxiosResponse<any>>,
+    onFulfilled?: (
+      value: AxiosResponse<any>
+    ) => AxiosResponse<any> | Promise<AxiosResponse<any>>,
     onRejected?: (error: any) => any
   ): void;
 
@@ -50,6 +58,8 @@ export class QingWebApiSdk implements IQingWebApiSdk {
     this._auth = new AuthApi(this._axios);
     this._game = new GameApi(this._axios);
     this._component = new ComponentApi(this._axios);
+    this._plugin = new PluginApi(this._axios);
+    this._util = new UtilApi(this._axios);
   }
 
   private _auth: AuthApi;
@@ -67,19 +77,33 @@ export class QingWebApiSdk implements IQingWebApiSdk {
     return this._component;
   }
 
+  private _plugin: PluginApi;
+  public get plugin() {
+    return this._plugin;
+  }
+
+  private _util: UtilApi;
+  public get util() {
+    return this._util;
+  }
+
   public setToken(token: string): void {
     this._axios.defaults.headers.common["X-Pixelpai-TK"] = token;
   }
 
   public setRequestInterceptor(
-    onFulfilled?: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>,
+    onFulfilled?: (
+      value: AxiosRequestConfig
+    ) => AxiosRequestConfig | Promise<AxiosRequestConfig>,
     onRejected?: (error: any) => any
   ) {
     this._axios.interceptors.request.use(onFulfilled, onRejected);
   }
 
   public setResponseInterceptor(
-    onFulfilled?: (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<AxiosResponse<any>>,
+    onFulfilled?: (
+      value: AxiosResponse<any>
+    ) => AxiosResponse<any> | Promise<AxiosResponse<any>>,
     onRejected?: (error: any) => any
   ) {
     this._axios.interceptors.response.use(onFulfilled, onRejected);

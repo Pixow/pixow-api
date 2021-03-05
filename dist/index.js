@@ -55,6 +55,33 @@ class GameApi {
     }
 }
 
+class PluginApi {
+    constructor(_axios) {
+        this._axios = _axios;
+    }
+    createPlugin(data) {
+        return this._axios.post("/plugin/create", data);
+    }
+    updatePlugin(pluginId, updateDto) {
+        return this._axios.post(`/plugin/update/${pluginId}`, updateDto);
+    }
+    listPlugins() {
+        return this._axios.get(`/plugin/list`);
+    }
+    getPlugin(pluginName) {
+        return this._axios.get(`/plugin/list?name=${pluginName}`);
+    }
+}
+
+class UtilApi {
+    constructor(_axios) {
+        this._axios = _axios;
+    }
+    getQiniuToken(data) {
+        return this._axios.post("/qiniu_token", data);
+    }
+}
+
 var Environment;
 (function (Environment) {
     Environment[Environment["Development"] = 0] = "Development";
@@ -79,6 +106,8 @@ class QingWebApiSdk {
         this._auth = new AuthApi(this._axios);
         this._game = new GameApi(this._axios);
         this._component = new ComponentApi(this._axios);
+        this._plugin = new PluginApi(this._axios);
+        this._util = new UtilApi(this._axios);
     }
     get auth() {
         return this._auth;
@@ -88,6 +117,12 @@ class QingWebApiSdk {
     }
     get component() {
         return this._component;
+    }
+    get plugin() {
+        return this._plugin;
+    }
+    get util() {
+        return this._util;
     }
     setToken(token) {
         this._axios.defaults.headers.common["X-Pixelpai-TK"] = token;
@@ -103,4 +138,4 @@ class QingWebApiSdk {
     }
 }
 
-export { AuthApi, ComponentApi, ComponentType, ComponentVisibility, Environment, GameApi, QingWebApiSdk };
+export { AuthApi, ComponentApi, ComponentType, ComponentVisibility, Environment, GameApi, PluginApi, QingWebApiSdk };
