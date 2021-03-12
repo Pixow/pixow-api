@@ -29,16 +29,52 @@ var ComponentType;
     ComponentType["All"] = "";
     ComponentType["Element"] = "ElementNode";
     ComponentType["Terrain"] = "TerrainNode";
-    ComponentType["CustomFeaturePack"] = "CustomNode";
+    ComponentType["CustomNode"] = "CustomNode";
     ComponentType["Effect"] = "EffectNode";
 })(ComponentType || (ComponentType = {}));
 class ComponentApi {
     constructor(_axios) {
         this._axios = _axios;
     }
-    listMarketComponents(pagination = { page: 1, pageSize: 20 }, query = { type: ComponentType.All, keyword: "", tags: [], visibility: ComponentVisibility.PUBLIC }) {
-        const q = Object.assign(pagination, query);
+    listMarketComponents(pagination = { page: 1, pageSize: 20 }, query = {
+        keyword: "",
+        tags: [],
+    }) {
+        const q = Object.assign(pagination, query, {
+            type: `-${ComponentType.CustomNode}`,
+            visibility: ComponentVisibility.PUBLIC,
+        });
         return this._axios.get(`/component/list?${stringify(q)}`);
+    }
+    listMyComponents(pagination = { page: 1, pageSize: 20 }, query = {
+        keyword: "",
+        tags: [],
+    }) {
+        const q = Object.assign(pagination, query, {
+            type: `-${ComponentType.CustomNode}`,
+            visibility: ComponentVisibility.PRIVATE,
+        });
+        return this._axios.get(`/component/mine?${stringify(q)}`);
+    }
+    listMarketCustomNodes(pagination = { page: 1, pageSize: 20 }, query = {
+        keyword: "",
+        tags: [],
+    }) {
+        const q = Object.assign(pagination, query, {
+            type: ComponentType.CustomNode,
+            visibility: ComponentVisibility.PUBLIC,
+        });
+        return this._axios.get(`/component/list?${stringify(q)}`);
+    }
+    listMyCustomNodes(pagination = { page: 1, pageSize: 20 }, query = {
+        keyword: "",
+        tags: [],
+    }) {
+        const q = Object.assign(pagination, query, {
+            type: ComponentType.CustomNode,
+            visibility: ComponentVisibility.PRIVATE,
+        });
+        return this._axios.get(`/component/mine?${stringify(q)}`);
     }
 }
 
