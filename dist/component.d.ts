@@ -20,8 +20,8 @@ export interface ComponentQuery {
 export declare class ComponentApi {
     private _axios;
     constructor(_axios: AxiosInstance);
-    listMarketComponents(pagination?: Pagination, query?: ComponentQuery): Promise<import("axios").AxiosResponse<any>>;
-    listMyComponents(pagination?: Pagination, query?: ComponentQuery): Promise<import("axios").AxiosResponse<any>>;
-    listMarketCustomNodes(pagination?: Pagination, query?: ComponentQuery): Promise<import("axios").AxiosResponse<any>>;
-    listMyCustomNodes(pagination?: Pagination, query?: ComponentQuery): Promise<import("axios").AxiosResponse<any>>;
+    listMarketComponents(pagination?: Pagination, query?: ComponentQuery): Promise<any>;
+    listMyComponents(pagination?: Pagination, query?: ComponentQuery): Promise<any>;
+    listMarketCustomNodes(pagination?: Pagination, query?: ComponentQuery): Promise<any>;
+    listMyCustomNodes(pagination?: Pagination, query?: ComponentQuery): Promise<any>;
 }

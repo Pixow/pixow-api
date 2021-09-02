@@ -8,6 +8,6 @@ export class UtilApi {
   constructor(private _axios: AxiosInstance) {}
 
   public getQiniuToken(data: GetQiniuTokenDto): Promise<any> {
-    return this._axios.post("/qiniu_token", data);
+    return this._axios.post("/qiniu_token", data).then(res => res.data)
   }
 }

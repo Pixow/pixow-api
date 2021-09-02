@@ -37,7 +37,7 @@ export class ComponentApi {
       visibility: ComponentVisibility.PUBLIC,
     });
 
-    return this._axios.get(`/component/list?${qs.stringify(q)}`);
+    return this._axios.get(`/component/list?${qs.stringify(q)}`).then(res => res.data)
   }
 
   public listMyComponents(
@@ -52,7 +52,7 @@ export class ComponentApi {
       visibility: ComponentVisibility.PRIVATE,
     });
 
-    return this._axios.get(`/component/mine?${qs.stringify(q)}`);
+    return this._axios.get(`/component/mine?${qs.stringify(q)}`).then(res => res.data)
   }
 
   public listMarketCustomNodes(
@@ -67,7 +67,7 @@ export class ComponentApi {
       visibility: ComponentVisibility.PUBLIC,
     });
 
-    return this._axios.get(`/component/list?${qs.stringify(q)}`);
+    return this._axios.get(`/component/list?${qs.stringify(q)}`).then(res => res.data)
   }
 
   public listMyCustomNodes(
@@ -82,6 +82,6 @@ export class ComponentApi {
       visibility: ComponentVisibility.PRIVATE,
     });
 
-    return this._axios.get(`/component/mine?${qs.stringify(q)}`);
+    return this._axios.get(`/component/mine?${qs.stringify(q)}`).then(res => res.data)
   }
 }

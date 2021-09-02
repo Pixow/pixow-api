@@ -12,13 +12,13 @@ export class AuthApi {
     return this._axios.post("/account/editor_signin", {
       account,
       password,
-    });
+    }).then(res => res.data)
   }
 
   public refreshToken(token: string, refreshToken: string): Promise<any> {
     return this._axios.post("/account/refresh_token", {
       token,
       refreshToken,
-    });
+    }).then(res => res.data)
   }
 }

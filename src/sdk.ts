@@ -6,50 +6,36 @@ import { PluginApi } from "./plugin";
 import { UtilApi } from "./util";
 
 export enum Environment {
-  Development,
-  Alpha,
-  Production,
+  Develop = "develop",
+  Release = "release",
+  Production = "production",
 }
 
-export interface IQingWebApiSdk {
-  auth: AuthApi;
-  game: GameApi;
-  component: ComponentApi;
-  plugin: PluginApi;
-  util: UtilApi;
+const Config = {
+  [Environment.Develop]: "http://172.18.0.100:17180",
+  [Environment.Release]: "https://api-dev.tooqing.com",
+  [Environment.Production]: "https://api.tooqing.com",
+};
 
-  setToken(token: string): void;
-  setRequestInterceptor(
-    onFulfilled?: (
-      value: AxiosRequestConfig
-    ) => AxiosRequestConfig | Promise<AxiosRequestConfig>,
-    onRejected?: (error: any) => any
-  ): void;
-  setResponseInterceptor(
-    onFulfilled?: (
-      value: AxiosResponse<any>
-    ) => AxiosResponse<any> | Promise<AxiosResponse<any>>,
-    onRejected?: (error: any) => any
-  ): void;
-
-  req(request: any): void;
-}
-
-export class QingWebApiSdk implements IQingWebApiSdk {
+export class QingWebApiSdk {
   private env: Environment;
   private _baseUrl: string;
   private _axios: AxiosInstance;
 
-  constructor(env: Environment) {
+  public static instance: QingWebApiSdk;
+
+  public static getInstance() {
+    if (!QingWebApiSdk.instance) {
+      QingWebApiSdk.instance = new QingWebApiSdk();
+    }
+
+    return QingWebApiSdk.instance;
+  }
+
+  constructor(env: Environment = Environment.Release) {
     this.env = env;
 
-    if (env === Environment.Development) {
-      this._baseUrl = "http://172.18.0.100:17170";
-    } else if (env === Environment.Alpha) {
-      this._baseUrl = "https://api-dev.tooqing.com";
-    } else {
-      this._baseUrl = "https://api.tooqing.com";
-    }
+    this._baseUrl = Config[env];
 
     this._axios = axios.create({
       baseURL: this._baseUrl,

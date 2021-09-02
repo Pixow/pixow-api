@@ -9,13 +9,13 @@ class AuthApi {
         return this._axios.post("/account/editor_signin", {
             account,
             password,
-        });
+        }).then(res => res.data);
     }
     refreshToken(token, refreshToken) {
         return this._axios.post("/account/refresh_token", {
             token,
             refreshToken,
-        });
+        }).then(res => res.data);
     }
 }
 
@@ -44,7 +44,7 @@ class ComponentApi {
             type: `-${ComponentType.CustomNode}`,
             visibility: ComponentVisibility.PUBLIC,
         });
-        return this._axios.get(`/component/list?${stringify(q)}`);
+        return this._axios.get(`/component/list?${stringify(q)}`).then(res => res.data);
     }
     listMyComponents(pagination = { page: 1, pageSize: 20 }, query = {
         keyword: "",
@@ -54,7 +54,7 @@ class ComponentApi {
             type: `-${ComponentType.CustomNode}`,
             visibility: ComponentVisibility.PRIVATE,
         });
-        return this._axios.get(`/component/mine?${stringify(q)}`);
+        return this._axios.get(`/component/mine?${stringify(q)}`).then(res => res.data);
     }
     listMarketCustomNodes(pagination = { page: 1, pageSize: 20 }, query = {
         keyword: "",
@@ -64,7 +64,7 @@ class ComponentApi {
             type: ComponentType.CustomNode,
             visibility: ComponentVisibility.PUBLIC,
         });
-        return this._axios.get(`/component/list?${stringify(q)}`);
+        return this._axios.get(`/component/list?${stringify(q)}`).then(res => res.data);
     }
     listMyCustomNodes(pagination = { page: 1, pageSize: 20 }, query = {
         keyword: "",
@@ -74,7 +74,7 @@ class ComponentApi {
             type: ComponentType.CustomNode,
             visibility: ComponentVisibility.PRIVATE,
         });
-        return this._axios.get(`/component/mine?${stringify(q)}`);
+        return this._axios.get(`/component/mine?${stringify(q)}`).then(res => res.data);
     }
 }
 
@@ -83,11 +83,11 @@ class GameApi {
         this._axios = _axios;
     }
     listTemplateGames() {
-        return this._axios.get("/game/list?template=true");
+        return this._axios.get("/game/list?template=true").then(res => res.data);
     }
     listMyGames(pagination = { page: 1, pageSize: 20 }) {
         const q = stringify(pagination);
-        return this._axios.get(`/game/mine?${q}`);
+        return this._axios.get(`/game/mine?${q}`).then(res => res.data);
     }
 }
 
@@ -96,16 +96,16 @@ class PluginApi {
         this._axios = _axios;
     }
     createPlugin(data) {
-        return this._axios.post("/plugin/create", data);
+        return this._axios.post("/plugin/create", data).then(res => res.data);
     }
-    updatePlugin(pluginId, updateDto) {
-        return this._axios.post(`/plugin/update/${pluginId}`, updateDto);
+    updatePlugin(pluginName, updateDto) {
+        return this._axios.put(`/plugin/update/${pluginName}`, updateDto).then(res => res.data);
     }
     listPlugins() {
-        return this._axios.get(`/plugin/list`);
+        return this._axios.get(`/plugin/list`).then(res => res.data);
     }
     getPlugin(pluginName) {
-        return this._axios.get(`/plugin/list?name=${pluginName}`);
+        return this._axios.get(`/plugin/list?name=${pluginName}`).then(res => res.data);
     }
 }
 
@@ -114,28 +114,25 @@ class UtilApi {
         this._axios = _axios;
     }
     getQiniuToken(data) {
-        return this._axios.post("/qiniu_token", data);
+        return this._axios.post("/qiniu_token", data).then(res => res.data);
     }
 }
 
 var Environment;
 (function (Environment) {
-    Environment[Environment["Development"] = 0] = "Development";
-    Environment[Environment["Alpha"] = 1] = "Alpha";
-    Environment[Environment["Production"] = 2] = "Production";
+    Environment["Develop"] = "develop";
+    Environment["Release"] = "release";
+    Environment["Production"] = "production";
 })(Environment || (Environment = {}));
+const Config = {
+    [Environment.Develop]: "http://172.18.0.100:17180",
+    [Environment.Release]: "https://api-dev.tooqing.com",
+    [Environment.Production]: "https://api.tooqing.com",
+};
 class QingWebApiSdk {
-    constructor(env) {
+    constructor(env = Environment.Release) {
         this.env = env;
-        if (env === Environment.Development) {
-            this._baseUrl = "http://172.18.0.100:17170";
-        }
-        else if (env === Environment.Alpha) {
-            this._baseUrl = "https://api-dev.tooqing.com";
-        }
-        else {
-            this._baseUrl = "https://api.tooqing.com";
-        }
+        this._baseUrl = Config[env];
         this._axios = axios.create({
             baseURL: this._baseUrl,
         });
@@ -144,6 +141,12 @@ class QingWebApiSdk {
         this._component = new ComponentApi(this._axios);
         this._plugin = new PluginApi(this._axios);
         this._util = new UtilApi(this._axios);
+    }
+    static getInstance() {
+        if (!QingWebApiSdk.instance) {
+            QingWebApiSdk.instance = new QingWebApiSdk();
+        }
+        return QingWebApiSdk.instance;
     }
     get auth() {
         return this._auth;

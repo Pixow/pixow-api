@@ -5,26 +5,17 @@ import { GameApi } from "./game";
 import { PluginApi } from "./plugin";
 import { UtilApi } from "./util";
 export declare enum Environment {
-    Development = 0,
-    Alpha = 1,
-    Production = 2
+    Develop = "develop",
+    Release = "release",
+    Production = "production"
 }
-export interface IQingWebApiSdk {
-    auth: AuthApi;
-    game: GameApi;
-    component: ComponentApi;
-    plugin: PluginApi;
-    util: UtilApi;
-    setToken(token: string): void;
-    setRequestInterceptor(onFulfilled?: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>, onRejected?: (error: any) => any): void;
-    setResponseInterceptor(onFulfilled?: (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<AxiosResponse<any>>, onRejected?: (error: any) => any): void;
-    req(request: any): void;
-}
-export declare class QingWebApiSdk implements IQingWebApiSdk {
+export declare class QingWebApiSdk {
     private env;
     private _baseUrl;
     private _axios;
-    constructor(env: Environment);
+    static instance: QingWebApiSdk;
+    static getInstance(): QingWebApiSdk;
+    constructor(env?: Environment);
     private _auth;
     get auth(): AuthApi;
     private _game;
