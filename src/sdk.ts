@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { AuthApi } from "./auth";
+import { AvatarApi } from "./avatar";
 import { ComponentApi } from "./component";
 import { GameApi } from "./game";
 import { PluginApi } from "./plugin";
@@ -46,6 +47,7 @@ export class QingWebApiSdk {
     this._component = new ComponentApi(this._axios);
     this._plugin = new PluginApi(this._axios);
     this._util = new UtilApi(this._axios);
+    this._avatar = new AvatarApi(this._axios);
   }
 
   private _auth: AuthApi;
@@ -71,6 +73,11 @@ export class QingWebApiSdk {
   private _util: UtilApi;
   public get util() {
     return this._util;
+  }
+
+  private _avatar: AvatarApi;
+  public get avatar() {
+    return this._avatar;
   }
 
   public setToken(token: string): void {

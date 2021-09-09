@@ -19,6 +19,28 @@ class AuthApi {
     }
 }
 
+class AvatarApi {
+    constructor(_axios) {
+        this._axios = _axios;
+    }
+    listUserAvatars(userId, query = { page: 1, pageSize: 20 }) {
+        const q = stringify(Object.assign(query, { archive: false }));
+        return this._axios
+            .get(`/avtar/${userId}/list?${q}`)
+            .then((res) => res.data);
+    }
+    listAvatars(query = { page: 1, pageSize: 20 }) {
+        const q = stringify(query);
+        return this._axios.get(`/avatar/list?${q}`).then((res) => res.data);
+    }
+    createAvatar(avatar) {
+        return this._axios.post("/avatar/create", avatar).then(res => res.data);
+    }
+    updateAvatar(id, updateDto) {
+        return this._axios.post(`/avatar/update/${id}`, updateDto).then(res => res.data);
+    }
+}
+
 var ComponentVisibility;
 (function (ComponentVisibility) {
     ComponentVisibility["PUBLIC"] = "Public";
@@ -141,6 +163,7 @@ class QingWebApiSdk {
         this._component = new ComponentApi(this._axios);
         this._plugin = new PluginApi(this._axios);
         this._util = new UtilApi(this._axios);
+        this._avatar = new AvatarApi(this._axios);
     }
     static getInstance() {
         if (!QingWebApiSdk.instance) {
@@ -162,6 +185,9 @@ class QingWebApiSdk {
     }
     get util() {
         return this._util;
+    }
+    get avatar() {
+        return this._avatar;
     }
     setToken(token) {
         this._axios.defaults.headers.common["X-Pixelpai-TK"] = token;

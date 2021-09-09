@@ -1,5 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { AuthApi } from "./auth";
+import { AvatarApi } from "./avatar";
 import { ComponentApi } from "./component";
 import { GameApi } from "./game";
 import { PluginApi } from "./plugin";
@@ -26,6 +27,8 @@ export declare class QingWebApiSdk {
     get plugin(): PluginApi;
     private _util;
     get util(): UtilApi;
+    private _avatar;
+    get avatar(): AvatarApi;
     setToken(token: string): void;
     setRequestInterceptor(onFulfilled?: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>, onRejected?: (error: any) => any): void;
     setResponseInterceptor(onFulfilled?: (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<AxiosResponse<any>>, onRejected?: (error: any) => any): void;

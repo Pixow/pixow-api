@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { Pagination } from "./type";
+import { QueryParams } from "./type";
 export declare enum ComponentVisibility {
     PUBLIC = "Public",
     PRIVATE = "Private"
@@ -20,8 +20,8 @@ export interface ComponentQuery {
 export declare class ComponentApi {
     private _axios;
     constructor(_axios: AxiosInstance);
-    listMarketComponents(pagination?: Pagination, query?: ComponentQuery): Promise<any>;
-    listMyComponents(pagination?: Pagination, query?: ComponentQuery): Promise<any>;
-    listMarketCustomNodes(pagination?: Pagination, query?: ComponentQuery): Promise<any>;
-    listMyCustomNodes(pagination?: Pagination, query?: ComponentQuery): Promise<any>;
+    listMarketComponents(pagination?: QueryParams, query?: ComponentQuery): Promise<any>;
+    listMyComponents(pagination?: QueryParams, query?: ComponentQuery): Promise<any>;
+    listMarketCustomNodes(pagination?: QueryParams, query?: ComponentQuery): Promise<any>;
+    listMyCustomNodes(pagination?: QueryParams, query?: ComponentQuery): Promise<any>;
 }

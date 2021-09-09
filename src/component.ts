@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import * as qs from "qs";
-import { Pagination } from "./type";
+import { QueryParams } from "./type";
 
 export enum ComponentVisibility {
   PUBLIC = "Public",
@@ -26,7 +26,7 @@ export class ComponentApi {
   constructor(private _axios: AxiosInstance) {}
 
   public listMarketComponents(
-    pagination: Pagination = { page: 1, pageSize: 20 },
+    pagination: QueryParams = { page: 1, pageSize: 20 },
     query: ComponentQuery = {
       keyword: "",
       tags: [],
@@ -41,7 +41,7 @@ export class ComponentApi {
   }
 
   public listMyComponents(
-    pagination: Pagination = { page: 1, pageSize: 20 },
+    pagination: QueryParams = { page: 1, pageSize: 20 },
     query: ComponentQuery = {
       keyword: "",
       tags: [],
@@ -56,7 +56,7 @@ export class ComponentApi {
   }
 
   public listMarketCustomNodes(
-    pagination: Pagination = { page: 1, pageSize: 20 },
+    pagination: QueryParams = { page: 1, pageSize: 20 },
     query: ComponentQuery = {
       keyword: "",
       tags: [],
@@ -71,7 +71,7 @@ export class ComponentApi {
   }
 
   public listMyCustomNodes(
-    pagination: Pagination = { page: 1, pageSize: 20 },
+    pagination: QueryParams = { page: 1, pageSize: 20 },
     query: ComponentQuery = {
       keyword: "",
       tags: [],

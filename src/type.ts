@@ -1,4 +1,5 @@
-export interface Pagination {
+export interface QueryParams {
   page: number;
   pageSize?: number;
+  keyword?: string;
 }
