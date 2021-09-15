@@ -220,6 +220,11 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+class-transformer@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npm.taobao.org/class-transformer/download/class-transformer-0.4.0.tgz#b52144117b423c516afb44cc1c76dbad31c2165b"
+  integrity sha1-tSFEEXtCPFFq+0TMHHbbrTHCFls=
+
 clone@~0.1.9:
   version "0.1.19"
   resolved "https://registry.npm.taobao.org/clone/download/clone-0.1.19.tgz#613fb68639b26a494ac53253e15b1a6bd88ada85"
@@ -967,6 +972,11 @@ readable-stream@~1.0.26, readable-stream@~1.0.26-4:
     inherits "~2.0.1"
     isarray "0.0.1"
     string_decoder "~0.10.x"
+
+reflect-metadata@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.npm.taobao.org/reflect-metadata/download/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha1-Z648pXyXKiqhZCsQ/jY/4y1J3Ag=
 
 resolve@1.17.0:
   version "1.17.0"

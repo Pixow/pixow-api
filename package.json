@@ -1,5 +1,5 @@
 {
-  "name": "qing-web-api-sdk",
+  "name": "qing-api",
   "version": "0.0.2",
   "author": "moJiXiang",
   "main": "dist/index.js",
@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "qs": "^6.9.4"
+    "class-transformer": "^0.4.0",
+    "qs": "^6.9.4",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",

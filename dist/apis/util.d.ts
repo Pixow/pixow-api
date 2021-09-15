@@ -1,9 +1,9 @@
-import { AxiosInstance } from "axios";
+import { SdkClient } from "../common/sdkclient";
 export interface GetQiniuTokenDto {
     name: string;
 }
 export declare class UtilApi {
-    private _axios;
-    constructor(_axios: AxiosInstance);
+    private client;
+    constructor(client: SdkClient);
     getQiniuToken(data: GetQiniuTokenDto): Promise<any>;
 }
