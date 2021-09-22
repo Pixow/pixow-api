@@ -1,6 +1,5 @@
-import { AxiosInstance } from "axios";
 import * as qs from "qs";
-import { QueryParams } from "src";
+import { QueryParams } from "../models/global.model";
 import { SdkClient } from "../common/sdkclient";
 
 export enum ComponentVisibility {

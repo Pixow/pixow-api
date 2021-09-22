@@ -1,4 +1,4 @@
-import { QueryParams } from "src";
+import { QueryParams } from "../models/global.model";
 import { SdkClient } from "../common/sdkclient";
 export declare enum ComponentVisibility {
     PUBLIC = "Public",

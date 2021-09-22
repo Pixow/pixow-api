@@ -1,5 +1,6 @@
-import { Game, QueryParams } from "src";
+import { QueryParams } from "../models/global.model";
 import { SdkClient } from "../common/sdkclient";
+import { Game } from "../models/game.model";
 export declare class GameApi {
     private client;
     constructor(client: SdkClient);

@@ -9,7 +9,7 @@ import { GameApi } from "./apis/game";
 import { PluginApi } from "./apis/plugin";
 import { UtilApi } from "./apis/util";
 
-export default class QingApi {
+export default class PixowApi {
   private _client: SdkClient;
 
   public auth: AuthApi;

@@ -1,4 +1,4 @@
-import { Plugin } from "src";
+import { Plugin } from "../models/plugin.model";
 import { SdkClient } from "../common/sdkclient";
 export interface UpdatePluginDto {
     name?: string;
@@ -9,6 +9,7 @@ export interface UpdatePluginDto {
     icon?: string;
 }
 export interface CreatePluginDto {
+    pid: string;
     name: string;
     description: string;
     version: string;

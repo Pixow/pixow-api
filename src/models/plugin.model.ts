@@ -1,6 +1,7 @@
-import { User } from "src";
+import { User } from "./user.model";
 
 export class Plugin {
+	pid: string;
 	name: string;
 	description: string;
 	owner: User;

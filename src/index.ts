@@ -1,6 +1,6 @@
-import QingApi from "./qing-api";
+import PixowApi from "./pixow-api";
 
-export default QingApi;
+export default PixowApi;
 export * from "./common";
 export * from "./apis";
 export * from "./models";

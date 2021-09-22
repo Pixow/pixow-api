@@ -65,10 +65,12 @@ class AvatarApi {
 
 var Area;
 (function (Area) {
+    Area["CNDEV"] = "cn-dev";
     Area["CN"] = "cn";
     Area["OVERSEA"] = "oversea";
 })(Area || (Area = {}));
 const BaseURLS = {
+    [Area.CNDEV]: "https://api-dev.tooqing.com",
     [Area.CN]: "https://api.tooqing.com",
     [Area.OVERSEA]: "https://api.picatown.world",
 };
@@ -165,40 +167,6 @@ class ComponentApi {
     }
 }
 
-class PluginApi {
-    constructor(client) {
-        this.client = client;
-    }
-    createPlugin(data) {
-        return this.client.post("/plugin/create", data);
-    }
-    updatePlugin(pluginName, updateDto) {
-        return this.client.put(`/plugin/update/${pluginName}`, updateDto);
-    }
-    listPlugins() {
-        return this.client.get(`/plugin/list`).then(res => {
-            const { total, list } = res;
-            const rets = list.map((item) => plainToClass(Plugin, item));
-            return {
-                total,
-                list: rets
-            };
-        });
-    }
-    getPlugin(pluginName) {
-        return this.client.get(`/plugin/list?name=${pluginName}`).then(res => plainToClass(Plugin, res.data));
-    }
-}
-
-class UtilApi {
-    constructor(client) {
-        this.client = client;
-    }
-    getQiniuToken(data) {
-        return this.client.post("/qiniu_token", data);
-    }
-}
-
 var Visibility;
 (function (Visibility) {
     Visibility["Private"] = "Private";
@@ -229,12 +197,6 @@ class Game {
     }
 }
 
-class Plugin {
-}
-
-class User {
-}
-
 class GameApi {
     constructor(client) {
         this.client = client;
@@ -262,6 +224,44 @@ class GameApi {
     }
 }
 
+class Plugin {
+}
+
+class PluginApi {
+    constructor(client) {
+        this.client = client;
+    }
+    createPlugin(data) {
+        return this.client.post("/plugin/create", data);
+    }
+    updatePlugin(pluginName, updateDto) {
+        return this.client.put(`/plugin/update/${pluginName}`, updateDto);
+    }
+    listPlugins() {
+        return this.client.get(`/plugin/list`).then(res => {
+            const { code, data } = res;
+            const { total, list } = data;
+            const rets = list.map((item) => plainToClass(Plugin, item));
+            return {
+                total,
+                list: rets
+            };
+        });
+    }
+    getPlugin(pluginName) {
+        return this.client.get(`/plugin/list?name=${pluginName}`).then(res => plainToClass(Plugin, res.data));
+    }
+}
+
+class UtilApi {
+    constructor(client) {
+        this.client = client;
+    }
+    getQiniuToken(data) {
+        return this.client.post("/qiniu_token", data);
+    }
+}
+
 class QingApi {
     constructor(configuration) {
         this._client = SdkClient.getInstance(BaseURLS[configuration.area]);
@@ -275,6 +275,9 @@ class QingApi {
     setToken(token) {
         this._client.setToken(token);
     }
+}
+
+class User {
 }
 
 export default QingApi;

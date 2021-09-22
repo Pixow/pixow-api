@@ -1,5 +1,5 @@
-import { QueryParams } from "src";
-import { Avatar, CreateOrUpdateAvatarDto } from "src/models/avatar.model";
+import { QueryParams } from "../models/global.model";
+import { Avatar, CreateOrUpdateAvatarDto } from "../models/avatar.model";
 import { SdkClient } from "../common/sdkclient";
 export declare class AvatarApi {
     private client;

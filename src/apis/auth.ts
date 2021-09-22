@@ -1,4 +1,3 @@
-import { AxiosInstance } from "axios";
 import { SdkClient } from "../common/sdkclient";
 
 export interface IAuthApi {

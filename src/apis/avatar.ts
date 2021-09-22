@@ -1,6 +1,6 @@
 import * as qs from "qs";
-import { QueryParams } from "src";
-import { Avatar, CreateOrUpdateAvatarDto } from "src/models/avatar.model";
+import { QueryParams } from "../models/global.model";
+import { Avatar, CreateOrUpdateAvatarDto } from "../models/avatar.model";
 import { SdkClient } from "../common/sdkclient";
 import { plainToClass } from "class-transformer";
 

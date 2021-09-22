@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { plainToClass } from "class-transformer";
-import { Plugin } from "src";
+import { Plugin } from "../models/plugin.model";
 import { SdkClient } from "../common/sdkclient";
 
 export interface UpdatePluginDto {
@@ -13,6 +13,7 @@ export interface UpdatePluginDto {
 }
 
 export interface CreatePluginDto {
+  pid: string;
   name: string;
   description: string;
   version: string;
@@ -36,7 +37,8 @@ export class PluginApi {
 
   public listPlugins(): Promise<{total: number, list: Plugin[]}> {
     return this.client.get(`/plugin/list`).then(res => {
-      const {total, list} = res;
+      const {code, data} = res
+      const {total, list} = data;
       const rets = list.map((item) => plainToClass(Plugin, item));
       return {
         total,
