@@ -24,14 +24,17 @@ export class AvatarApi {
       });
   }
 
-  public listAvatars(query: QueryParams = { page: 1, pageSize: 20 }) {
+  public listAvatars(query: QueryParams = { page: 1, pageSize: 20 }): Promise<{
+    total: number;
+    list: Avatar[];
+  }> {
     const q = qs.stringify(query);
 
     return this.client.get(`/avatar/list?${q}`).then(res => {
       const {total, list} = res.data;
       return {
         total,
-        list: plainToClass(Avatar, res.data)
+        list: list.map(item => plainToClass(Avatar, item))
       }
     })
   }

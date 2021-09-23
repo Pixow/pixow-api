@@ -9,8 +9,8 @@ export declare class AvatarApi {
         list: Avatar;
     }>;
     listAvatars(query?: QueryParams): Promise<{
-        total: any;
-        list: Avatar;
+        total: number;
+        list: Avatar[];
     }>;
     createAvatar(avatar: CreateOrUpdateAvatarDto): Promise<any>;
     updateAvatar(id: string, updateDto: CreateOrUpdateAvatarDto): Promise<any>;

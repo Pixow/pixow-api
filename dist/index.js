@@ -51,7 +51,7 @@ class AvatarApi {
             const { total, list } = res.data;
             return {
                 total,
-                list: plainToClass(Avatar, res.data)
+                list: list.map(item => plainToClass(Avatar, item))
             };
         });
     }
@@ -203,7 +203,8 @@ class GameApi {
     }
     listTemplateGames() {
         return this.client.get("/game/list?template=true").then((res) => {
-            const { total, list } = res;
+            const { code, data } = res;
+            const { total, list } = data;
             const rets = list.map((item) => plainToClass(Game, item));
             return {
                 total,
@@ -214,7 +215,8 @@ class GameApi {
     listMyGames(pagination = { page: 1, pageSize: 20 }) {
         const q = stringify(pagination);
         return this.client.get(`/game/mine?${q}`).then((res) => {
-            const { total, list } = res;
+            const { code, data } = res;
+            const { total, list } = data;
             const rets = list.map((item) => plainToClass(Game, item));
             return {
                 total,
@@ -262,7 +264,7 @@ class UtilApi {
     }
 }
 
-class QingApi {
+class PixowApi {
     constructor(configuration) {
         this._client = SdkClient.getInstance(BaseURLS[configuration.area]);
         this.auth = new AuthApi(this._client);
@@ -280,5 +282,8 @@ class QingApi {
 class User {
 }
 
-export default QingApi;
-export { Area, AuthApi, AvatarApi, BaseURLS, ComponentApi, ComponentType, ComponentVisibility, Game, GameApi, GameVersion, Plugin, PluginApi, QINGTOKENKEY, SdkClient, User, UtilApi, Visibility };
+class Component {
+}
+
+export default PixowApi;
+export { Area, AuthApi, Avatar, AvatarApi, AvatarVisibility, BaseURLS, Component, ComponentApi, ComponentType, ComponentVisibility, Game, GameApi, GameVersion, Plugin, PluginApi, QINGTOKENKEY, SdkClient, User, UtilApi, Visibility };

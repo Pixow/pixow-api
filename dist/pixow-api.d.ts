@@ -6,7 +6,7 @@ import { ComponentApi } from "./apis/component";
 import { GameApi } from "./apis/game";
 import { PluginApi } from "./apis/plugin";
 import { UtilApi } from "./apis/util";
-export default class QingApi {
+export default class PixowApi {
     private _client;
     auth: AuthApi;
     game: GameApi;
