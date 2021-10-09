@@ -44,6 +44,6 @@ export class AvatarApi {
   }
 
   public updateAvatar(id: string, updateDto: CreateOrUpdateAvatarDto) {
-	  return this.client.post(`/avatar/update/${id}`, updateDto)
+	  return this.client.put(`/avatar/update/${id}`, updateDto)
   }
 }

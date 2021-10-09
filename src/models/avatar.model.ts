@@ -1,7 +1,8 @@
 export interface CreateOrUpdateAvatarDto {
   name: string;
-  parts: string[];
-  type: string;
+  type?: string;
+  version?: number;
+  parts?: string[];
   avatar_slot?: string;
   tags?: string[];
 }
@@ -11,8 +12,15 @@ export enum AvatarVisibility {
   PUBLIC = "Public",
 }
 
+export interface Owner {
+  _id: string;
+  username: string;
+  nickname: string;
+}
+
 export class Avatar {
-  owner: string;
+  _id: string;
+  owner: Owner;
   tags: string[];
   name: string;
   description: string;

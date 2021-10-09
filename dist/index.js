@@ -59,7 +59,7 @@ class AvatarApi {
         return this.client.post("/avatar/create", avatar);
     }
     updateAvatar(id, updateDto) {
-        return this.client.post(`/avatar/update/${id}`, updateDto);
+        return this.client.put(`/avatar/update/${id}`, updateDto);
     }
 }
 
