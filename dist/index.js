@@ -240,18 +240,22 @@ class PluginApi {
         return this.client.put(`/plugin/update/${pluginName}`, updateDto);
     }
     listPlugins() {
-        return this.client.get(`/plugin/list`).then(res => {
+        return this.client.get(`/plugin/list`).then((res) => {
             const { code, data } = res;
             const { total, list } = data;
             const rets = list.map((item) => plainToClass(Plugin, item));
             return {
                 total,
-                list: rets
+                list: rets,
             };
         });
     }
-    getPlugin(pluginName) {
-        return this.client.get(`/plugin/list?name=${pluginName}`).then(res => plainToClass(Plugin, res.data));
+    getPlugin(pid) {
+        return this.client.get(`/plugin/list?pid=${pid}`).then((res) => {
+            const { code, data } = res;
+            const { total, list } = data;
+            return plainToClass(Plugin, list[0]);
+        });
     }
 }
 

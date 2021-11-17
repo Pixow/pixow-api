@@ -25,5 +25,5 @@ export declare class PluginApi {
         total: number;
         list: Plugin[];
     }>;
-    getPlugin(pluginName: string): Promise<Plugin>;
+    getPlugin(pid: string): Promise<Plugin>;
 }

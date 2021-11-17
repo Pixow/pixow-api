@@ -35,19 +35,23 @@ export class PluginApi {
     return this.client.put(`/plugin/update/${pluginName}`, updateDto);
   }
 
-  public listPlugins(): Promise<{total: number, list: Plugin[]}> {
-    return this.client.get(`/plugin/list`).then(res => {
-      const {code, data} = res
-      const {total, list} = data;
+  public listPlugins(): Promise<{ total: number; list: Plugin[] }> {
+    return this.client.get(`/plugin/list`).then((res) => {
+      const { code, data } = res;
+      const { total, list } = data;
       const rets = list.map((item) => plainToClass(Plugin, item));
       return {
         total,
-        list: rets
-      }
-    })
+        list: rets,
+      };
+    });
   }
 
-  public getPlugin(pluginName: string): Promise<Plugin> {
-    return this.client.get(`/plugin/list?name=${pluginName}`).then(res => plainToClass(Plugin, res.data))
+  public getPlugin(pid: string): Promise<Plugin> {
+    return this.client.get(`/plugin/list?pid=${pid}`).then((res) => {
+      const { code, data } = res;
+      const { total, list } = data;
+      return plainToClass(Plugin, list[0])
+    });
   }
 }
