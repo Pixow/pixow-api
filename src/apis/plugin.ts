@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { plainToClass } from "class-transformer";
-import { Plugin } from "../models/plugin.model";
+import { PluginRecord } from "../models/plugin.model";
 import { SdkClient } from "../common/sdkclient";
 
 export interface UpdatePluginDto {
@@ -35,11 +35,11 @@ export class PluginApi {
     return this.client.put(`/plugin/update/${pluginName}`, updateDto);
   }
 
-  public listPlugins(): Promise<{ total: number; list: Plugin[] }> {
+  public listPlugins(): Promise<{ total: number; list: PluginRecord[] }> {
     return this.client.get(`/plugin/list`).then((res) => {
       const { code, data } = res;
       const { total, list } = data;
-      const rets = list.map((item) => plainToClass(Plugin, item));
+      const rets = list.map((item) => plainToClass(PluginRecord, item));
       return {
         total,
         list: rets,
@@ -47,11 +47,11 @@ export class PluginApi {
     });
   }
 
-  public getPlugin(pid: string): Promise<Plugin> {
+  public getPlugin(pid: string): Promise<PluginRecord> {
     return this.client.get(`/plugin/list?pid=${pid}`).then((res) => {
       const { code, data } = res;
       const { total, list } = data;
-      return plainToClass(Plugin, list[0])
+      return plainToClass(PluginRecord, list[0])
     });
   }
 }

@@ -1,5 +1,5 @@
 import { User } from "./user.model";
-export declare class Plugin {
+export declare class PluginRecord {
     pid: string;
     name: string;
     description: string;

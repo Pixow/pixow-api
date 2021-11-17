@@ -1,4 +1,4 @@
-import { Plugin } from "../models/plugin.model";
+import { PluginRecord } from "../models/plugin.model";
 import { SdkClient } from "../common/sdkclient";
 export interface UpdatePluginDto {
     name?: string;
@@ -23,7 +23,7 @@ export declare class PluginApi {
     updatePlugin(pluginName: string, updateDto: UpdatePluginDto): Promise<any>;
     listPlugins(): Promise<{
         total: number;
-        list: Plugin[];
+        list: PluginRecord[];
     }>;
-    getPlugin(pid: string): Promise<Plugin>;
+    getPlugin(pid: string): Promise<PluginRecord>;
 }

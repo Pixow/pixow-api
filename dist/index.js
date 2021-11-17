@@ -226,7 +226,7 @@ class GameApi {
     }
 }
 
-class Plugin {
+class PluginRecord {
 }
 
 class PluginApi {
@@ -243,7 +243,7 @@ class PluginApi {
         return this.client.get(`/plugin/list`).then((res) => {
             const { code, data } = res;
             const { total, list } = data;
-            const rets = list.map((item) => plainToClass(Plugin, item));
+            const rets = list.map((item) => plainToClass(PluginRecord, item));
             return {
                 total,
                 list: rets,
@@ -254,7 +254,7 @@ class PluginApi {
         return this.client.get(`/plugin/list?pid=${pid}`).then((res) => {
             const { code, data } = res;
             const { total, list } = data;
-            return plainToClass(Plugin, list[0]);
+            return plainToClass(PluginRecord, list[0]);
         });
     }
 }
@@ -290,4 +290,4 @@ class Component {
 }
 
 export default PixowApi;
-export { Area, AuthApi, Avatar, AvatarApi, AvatarVisibility, BaseURLS, Component, ComponentApi, ComponentType, ComponentVisibility, Game, GameApi, GameVersion, Plugin, PluginApi, QINGTOKENKEY, SdkClient, User, UtilApi, Visibility };
+export { Area, AuthApi, Avatar, AvatarApi, AvatarVisibility, BaseURLS, Component, ComponentApi, ComponentType, ComponentVisibility, Game, GameApi, GameVersion, PluginApi, PluginRecord, QINGTOKENKEY, SdkClient, User, UtilApi, Visibility };
