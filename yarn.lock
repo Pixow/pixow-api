@@ -228,9 +228,9 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-class-transformer@^0.4.0:
+class-transformer@0.4.0:
   version "0.4.0"
-  resolved "https://registry.npm.taobao.org/class-transformer/download/class-transformer-0.4.0.tgz#b52144117b423c516afb44cc1c76dbad31c2165b"
+  resolved "https://registry.npmmirror.com/class-transformer/download/class-transformer-0.4.0.tgz#b52144117b423c516afb44cc1c76dbad31c2165b"
   integrity sha1-tSFEEXtCPFFq+0TMHHbbrTHCFls=
 
 clone@~0.1.9:
