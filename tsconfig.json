@@ -1,29 +1,15 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist",
-    "sourceMap": false,
-    "declaration": true,
+    "target": "esnext",
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "ESNext",
-    "module": "ESNext",
-    "typeRoots": [
-      "node_modules/@types",
-    ],
-    "baseUrl": "./",
-    "lib": [
-      "ES2017",
-      "ES2016",
-      "ES2015",
-      "DOM",
-      "DOM.Iterable"
-    ]
+    "isolatedModules": true,
+		"esModuleInterop": true,
+    "declaration": true,
+    "rootDir": "./src",
+    "outDir": "dist",
   },
   "include": [
     "src/**/*",
-    "types/**.ts"
   ],
   "exclude": [
     "node_modules",
