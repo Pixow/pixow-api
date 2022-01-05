@@ -9,3 +9,4 @@ interface PixowApi extends Avatars {}
 applyMixins(PixowApi, [Avatars]);
 
 export default PixowApi;
+export * from "./avatars/types";
