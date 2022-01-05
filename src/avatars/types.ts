@@ -1,24 +1,22 @@
-export interface CreateOrUpdateAvatarDto {
-  name: string;
-  type?: string;
-  version?: number;
-  parts?: string[];
-  avatar_slot?: string;
-  tags?: string[];
-}
+import { Pagination } from "../base";
+
+export type SearchAvatarsParams = Pagination & {
+  keyword?: string;
+  sorts?: string[];
+};
 
 export enum AvatarVisibility {
   PRIVATE = "Private",
   PUBLIC = "Public",
 }
 
-export interface Owner {
+export type Owner = {
   _id: string;
   username: string;
   nickname: string;
-}
+};
 
-export class Avatar {
+export type Avatar = {
   _id: string;
   owner: Owner;
   tags: string[];
@@ -32,4 +30,14 @@ export class Avatar {
   type: string;
   version?: number;
   avatar_slot?: string;
-}
+};
+
+export type CreateOrUpdateAvatarDto = {
+  id?: string;
+  name: string;
+  type?: string;
+  version?: number;
+  parts?: string[];
+  avatar_slot?: string;
+  tags?: string[];
+};
